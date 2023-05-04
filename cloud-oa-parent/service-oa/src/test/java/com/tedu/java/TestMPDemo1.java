@@ -1,12 +1,16 @@
 package com.tedu.java;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.tedu.java.mapper.SysRoleMapper;
 import com.tedu.java.model.system.SysRole;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,5 +50,35 @@ public class TestMPDemo1 {
         sysRole.setRoleName("zyy角色管理员");
         // 调用方法实现最终修改
         sysRoleMapper.updateById(sysRole);
+    }
+    // 根据id进行删除
+    @Test
+    public void delete(){
+        sysRoleMapper.deleteById(9);
+    }
+    // 批量删除
+    public void deleteBath(){
+        sysRoleMapper.deleteBatchIds(Arrays.asList(1,2));
+    }
+    // 条件查询
+    @Test
+    public void testQuery(){
+        // 创建条件对象
+        QueryWrapper<SysRole> wrapper = new QueryWrapper();
+        wrapper.eq("role_name","总经理");
+        // 调用mp方法实现查询操作
+        List<SysRole> list = sysRoleMapper.selectList(wrapper);
+        System.out.println(list);
+
+    }
+    @Test
+    public void testQuery1(){
+        // 创建条件对象
+        LambdaQueryWrapper<SysRole> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SysRole::getRoleCode,"role");
+        // 调用mp方法实现查询操作
+        List<SysRole> list = sysRoleMapper.selectList(wrapper);
+        System.out.println(list);
+
     }
 }

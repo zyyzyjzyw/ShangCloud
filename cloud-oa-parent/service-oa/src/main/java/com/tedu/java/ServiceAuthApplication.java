@@ -1,8 +1,8 @@
 package com.tedu.java;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author zyy
@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @createTime 2023年03月07日 21:05:00
  */
 @SpringBootApplication
-@MapperScan("com.tedu.java.mapper")
+@ComponentScan("com.tedu")
 public class ServiceAuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceAuthApplication.class, args);
